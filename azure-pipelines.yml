@@ -47,13 +47,13 @@ steps:
       git remote set-url origin https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@github.com/tarshyak/TestAutomationEcommerceSite.git  
 
       # Ensure we're on the main branch
-      git checkout main || git checkout -b main
-      git pull origin main  # Sync with the latest remote changes
+      git checkout master || git checkout -b main
+      git pull origin master  # Sync with the latest remote changes
 
       # Add and commit changes
       git add reports/*
       git commit -m "Adding generated reports from pipeline run" || echo "No changes to commit"
 
       # Push changes to GitHub
-      git push origin main
+      git push origin master
     displayName: 'Push Reports to GitHub'
