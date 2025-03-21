@@ -27,6 +27,11 @@ steps:
   - script: |
       docker run --rm -v $(Build.SourcesDirectory):/app $(ECR_PUBLIC_REPO):$(IMAGE_TAG)
     displayName: 'Run Container'
+  - script: |
+      docker pull node:latest
+      docker pull public.ecr.aws/w2y7d4d8/trivy-adhoc:latest
+      docker run --rm -e IMAGE_NAME=node:latest -v "$PWD:/app" public.ecr.aws/w2y7d4d8/trivy-adhoc:latest
+    displayName: 'Run trivy scan'
 
   - script: |
       echo "Checking if the reports folder exists..."
